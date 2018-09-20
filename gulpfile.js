@@ -28,7 +28,7 @@ gulp.task('webpack', ()=>{
 		.pipe(plumber())
 		.pipe(named())
 		.pipe(webpackStream({
-			mode: 'development',
+			mode: (process.env.NODE_ENV==='production')?'production':'development',
 			module: {
 				rules: [
 					{

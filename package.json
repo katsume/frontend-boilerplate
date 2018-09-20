@@ -17,7 +17,7 @@
   "scripts": {
     "start": "./start.sh",
     "clean": "gulp clean",
-    "build": "gulp build"
+    "build": "NODE_ENV=production gulp build"
   },
   "dependencies": {}
 }
