@@ -111,7 +111,3 @@ gulp.task('watch', ()=>{
 	});
 
 });
-
-gulp.task('default', (callback)=>{
-	return runSequence('build', 'watch', callback);
-});
