@@ -8,7 +8,7 @@ const	gulp= require('gulp'),
 			webpackStream= require('webpack-stream'),
 			// through= require('through2'),
 			ejs= require('gulp-ejs'),
-			sass= require('gulp-ruby-sass'),
+			sass= require('gulp-sass'),
 			watch= require('gulp-watch'),
 			runSequence= require('run-sequence');
 
@@ -74,9 +74,10 @@ gulp.task('ejs', ()=>{
 });
 
 gulp.task('sass', ()=>{
-	return sass(path.join(src, 'sass', '**', '*.scss'), {
+	return gulp.src(path.join(src, 'sass', '**', '*.scss'))
+		.pipe(sass({
 			style: 'expanded'
-		})
+		}))
 		.on('error', (err)=>{
 			console.error('Error', err.message);
 		})
