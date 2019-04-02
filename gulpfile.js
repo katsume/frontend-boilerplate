@@ -8,17 +8,13 @@ const	gulp= require('gulp'),
 			webpackStream= require('webpack-stream'),
 			// through= require('through2'),
 			ejs= require('gulp-ejs'),
-			sass= require('gulp-sass'),
-			watch= require('gulp-watch'),
-			runSequence= require('run-sequence');
+			sass= require('gulp-sass');
 
 const	src= path.resolve(__dirname, 'src'),
 			dest= path.resolve(__dirname, 'build');
 
-gulp.task('clean', (callback)=>{
-	del([path.join(dest, '**', '*.*')]).then(()=>{
-		callback();
-	});
+gulp.task('clean', ()=>{
+	return del([path.join(dest, '**', '*.*')]);
 });
 
 gulp.task('webpack', ()=>{
@@ -89,26 +85,30 @@ gulp.task('copy', ()=>{
 		.pipe(gulp.dest(dest));
 });
 
-gulp.task('build', (callback)=>{
-	return runSequence('clean', ['webpack', 'ejs', 'sass', 'copy'], callback);
-});
+gulp.task('build',
+	gulp.series('clean', gulp.parallel('webpack', 'ejs', 'sass', 'copy'))
+);
 
 gulp.task('watch', ()=>{
 
-	watch(path.join(src, 'js', '**'), ()=>{
-		return runSequence('webpack');
-	});
+	gulp.watch(
+		path.join(src, 'js', '**'),
+		gulp.series('webpack')
+	);
 
-	watch(path.join(src, 'ejs', '**', '*.(html|ejs|json)'), ()=>{
-		return runSequence('ejs');
-	});
+	gulp.watch(
+		path.join(src, 'ejs', '**', '*.(html|ejs|json)'),
+		gulp.series('ejs')
+	);
 
-	watch(path.join(src, 'sass', '**', '*.scss'), ()=>{
-		return runSequence('sass');
-	});
+	gulp.watch(
+		path.join(src, 'sass', '**', '*.scss'),
+		gulp.series('sass')
+	);
 
-	watch(path.join(src, 'www', '**'), ()=>{
-		return runSequence('copy');
-	});
+	gulp.watch(
+		path.join(src, 'www', '**'),
+		gulp.series('copy')
+	);
 
 });
