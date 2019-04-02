@@ -72,7 +72,7 @@ gulp.task('ejs', ()=>{
 gulp.task('sass', ()=>{
 	return gulp.src(path.join(src, 'sass', '**', '*.scss'))
 		.pipe(sass({
-			style: 'expanded'
+			outputStyle: (process.env.NODE_ENV==='production')?'compressed':'nested'
 		}))
 		.on('error', (err)=>{
 			console.error('Error', err.message);
