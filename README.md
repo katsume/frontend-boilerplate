@@ -4,7 +4,6 @@
 
 - Docker
 - Node.js
-- Sass
 
 ## Install
 
