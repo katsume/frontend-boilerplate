@@ -1,16 +1,16 @@
 {
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
     "babel-loader": "^8.0.6",
-    "del": "^3.0.0",
+    "del": "^5.1.0",
     "gulp": "^4.0.2",
-    "gulp-ejs": "^3.1.1",
-    "gulp-plumber": "^1.2.0",
+    "gulp-ejs": "^4.1.2",
+    "gulp-plumber": "^1.2.1",
     "gulp-sass": "^4.0.2",
     "vinyl-named": "^1.1.0",
-    "webpack": "^4.34.0",
-    "webpack-stream": "^5.1.1"
+    "webpack": "^4.41.2",
+    "webpack-stream": "^5.2.1"
   },
   "scripts": {
     "start": "./start.sh",
